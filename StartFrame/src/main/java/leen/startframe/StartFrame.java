@@ -44,19 +44,28 @@ public class StartFrame extends javax.swing.JFrame
         btnCal.setText("Calculadora");
         pnlLeftButtons.add(btnCal);
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Celsius to F");
         pnlLeftButtons.add(jButton2);
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Farehign to C");
+        jButton3.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton3ActionPerformed(evt);
+            }
+        });
         pnlLeftButtons.add(jButton3);
 
         getContentPane().add(pnlLeftButtons, java.awt.BorderLayout.LINE_START);
+
+        pnlContent.setBackground(new java.awt.Color(0, 153, 153));
 
         javax.swing.GroupLayout pnlContentLayout = new javax.swing.GroupLayout(pnlContent);
         pnlContent.setLayout(pnlContentLayout);
         pnlContentLayout.setHorizontalGroup(
             pnlContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGap(0, 310, Short.MAX_VALUE)
         );
         pnlContentLayout.setVerticalGroup(
             pnlContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,6 +77,11 @@ public class StartFrame extends javax.swing.JFrame
         setSize(new java.awt.Dimension(437, 347));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton3ActionPerformed
+    {//GEN-HEADEREND:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
