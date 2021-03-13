@@ -96,7 +96,8 @@ public class FramePrueba extends javax.swing.JFrame
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
 
-        pack();
+        setSize(new java.awt.Dimension(418, 347));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
