@@ -8,8 +8,11 @@ package views;
 import controllers.PnlCalculadoraControlador;
 import controllers.PnlMonedaControlador;
 import controllers.PnlTemperaturaControlador;
+import controllers.PnlTemperaturaController;
 import java.awt.BorderLayout;
+import javax.swing.JComponent;
 import views.panels.PnlCalculadora;
+import views.panels.PnlConversionTemplate;
 import views.panels.PnlMoneda;
 import views.panels.PnlTemperatura;
 
@@ -25,6 +28,9 @@ public class StartFrame extends javax.swing.JFrame
     private PnlTemperaturaControlador pnlTemperaturaControlador;
     private PnlMoneda pnlMoneda;
     private PnlMonedaControlador pnlMonedaControlador;
+    
+    private PnlConversionTemplate pnlCTTemperatura;
+    private PnlTemperaturaController pnlTemperaturaController;
 
     /**
      * Creates new form StartFrame
@@ -41,8 +47,7 @@ public class StartFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         pnlOperaciones = new javax.swing.JPanel();
         btnCalculadora = new javax.swing.JButton();
@@ -56,30 +61,24 @@ public class StartFrame extends javax.swing.JFrame
         pnlOperaciones.setLayout(new java.awt.GridLayout(3, 1, 2, 2));
 
         btnCalculadora.setText("Calculadora");
-        btnCalculadora.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnCalculadora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCalculadoraActionPerformed(evt);
             }
         });
         pnlOperaciones.add(btnCalculadora);
 
         btnTemperatura.setText("Conversion Temperatura");
-        btnTemperatura.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnTemperatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTemperaturaActionPerformed(evt);
             }
         });
         pnlOperaciones.add(btnTemperatura);
 
         btnCambioMoneda.setText("Cambio Moneda");
-        btnCambioMoneda.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnCambioMoneda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCambioMonedaActionPerformed(evt);
             }
         });
@@ -102,25 +101,27 @@ public class StartFrame extends javax.swing.JFrame
             pnlCalculadora = new PnlCalculadora();
             pnlCalculadoraControlador = new PnlCalculadoraControlador(pnlCalculadora);
         }
-        if(pnlContenido.getComponentCount() > 0)
-            pnlContenido.remove(0);
-        pnlContenido.add(pnlCalculadora, BorderLayout.CENTER);
-        this.validate();
+        addComponent(pnlCalculadora);
     }//GEN-LAST:event_btnCalculadoraActionPerformed
+
+    private void addComponent(JComponent component) {
+        pnlContenido.removeAll();
+
+
+        pnlContenido.add(component, BorderLayout.CENTER);
+        pnlContenido.repaint();
+        this.validate();
+    }
 
     private void btnTemperaturaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnTemperaturaActionPerformed
     {//GEN-HEADEREND:event_btnTemperaturaActionPerformed
         // TODO add your handling code here:
-        if(pnlTemperatura == null)
+        if(pnlCTTemperatura == null)
         {
-            pnlTemperatura = new PnlTemperatura();
-            pnlTemperaturaControlador = new PnlTemperaturaControlador(pnlTemperatura);
+            pnlCTTemperatura = new PnlConversionTemplate();
+            pnlTemperaturaController = new PnlTemperaturaController(pnlCTTemperatura);
         }
-
-        if(pnlContenido.getComponentCount() > 0)
-           pnlContenido.remove(0);
-        pnlContenido.add(pnlTemperatura, BorderLayout.CENTER);
-        this.validate();
+        addComponent(pnlCTTemperatura);
     }//GEN-LAST:event_btnTemperaturaActionPerformed
 
     private void btnCambioMonedaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCambioMonedaActionPerformed
