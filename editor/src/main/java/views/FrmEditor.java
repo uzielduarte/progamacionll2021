@@ -74,7 +74,7 @@ public class FrmEditor extends javax.swing.JFrame
         mnFile.setText("File");
 
         mnNew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        mnNew.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Documents\\Leen\\UNI-RUPAP\\Programacion II 2021\\editor\\src\\main\\resources\\images\\iconfinder_Add_132335.png")); // NOI18N
+        mnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconfinder_Add_132335.png"))); // NOI18N
         mnNew.setText("New");
         mnNew.addActionListener(new java.awt.event.ActionListener()
         {
@@ -86,8 +86,16 @@ public class FrmEditor extends javax.swing.JFrame
         mnFile.add(mnNew);
 
         mnOpen.setText("Open");
+        mnOpen.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mnOpenActionPerformed(evt);
+            }
+        });
         mnFile.add(mnOpen);
 
+        mnSaveAs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mnSaveAs.setText("Save as");
         mnSaveAs.addActionListener(new java.awt.event.ActionListener()
         {
@@ -147,8 +155,7 @@ public class FrmEditor extends javax.swing.JFrame
         String nombreArchivo = JOptionPane.showInputDialog("Ingrese nombre del archivo: ");
         try
         {
-            fw = new FileWriter("C:\\Users\\LENOVO\\Documents\\Leen\\UNI-RUPAP\\Programacion II 2021\\editor\\src\\main\\archivos\\"
-                    + nombreArchivo + ".txt");
+            fw = new FileWriter("\\src\\main\\archivos" + nombreArchivo + ".txt");
             PnlTextEditor pnlTextEditor = (PnlTextEditor) tbpContent.getSelectedComponent();
             
             String texto = pnlTextEditor.getTxtAEditor().getText();
@@ -167,6 +174,11 @@ public class FrmEditor extends javax.swing.JFrame
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_mnExitActionPerformed
+
+    private void mnOpenActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnOpenActionPerformed
+    {//GEN-HEADEREND:event_mnOpenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnOpenActionPerformed
 
     /**
      * @param args the command line arguments
