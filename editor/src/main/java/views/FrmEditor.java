@@ -332,7 +332,7 @@ public class FrmEditor extends javax.swing.JFrame
             //SimpleAttributeSet sas = new SimpleAttributeSet();
 
             //StyleConstants.setAlignment(as, StyleConstants.ALIGN_JUSTIFIED);
-            as.addAttribute(StyleConstants.Alignment, StyleConstants.ALIGN_JUSTIFIED);
+            as.addAttribute(StyleConstants.Alignment, StyleConstants.ALIGN_RIGHT);
             pnlEditor.getTxtpEditor().getStyledDocument().setCharacterAttributes(start, text.length(), as, true);
 
             pnlEditor.getTxtpEditor().setStyledDocument(style);
