@@ -5,11 +5,23 @@
  */
 package views;
 
-import java.io.FileWriter;
+import io.IOString;
+import java.awt.Font;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Element;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+import say.swing.JFontChooser;
 import views.panels.PnlTextEditor;
 
 /**
@@ -19,16 +31,32 @@ import views.panels.PnlTextEditor;
 public class FrmEditor extends javax.swing.JFrame
 {
     private int countTab;
-    private FileWriter fw;
+    private JFileChooser fileChooser;
+    private FileNameExtensionFilter fileNameFileFilter;
+    private IOString ioString;
+    private JFontChooser fontChooser;
     /**
      * Creates new form FrmEditor
      */
     public FrmEditor()
     {
         countTab = 1;
+        fileNameFileFilter = new FileNameExtensionFilter("*.TXT", "txt");
         initComponents();
     }
 
+    public JFileChooser getFileChooser()
+    {
+        if(fileChooser == null)
+        {
+            fileChooser = new JFileChooser();
+            fileChooser.addChoosableFileFilter(fileNameFileFilter);
+            fileChooser.setFileFilter(fileNameFileFilter);
+        }
+        return fileChooser;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,6 +70,8 @@ public class FrmEditor extends javax.swing.JFrame
         tbpContent = new javax.swing.JTabbedPane();
         jToolBar1 = new javax.swing.JToolBar();
         btnCloseTab = new javax.swing.JButton();
+        tglBold = new javax.swing.JToggleButton();
+        tglJustify = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnFile = new javax.swing.JMenu();
         mnNew = new javax.swing.JMenuItem();
@@ -50,6 +80,7 @@ public class FrmEditor extends javax.swing.JFrame
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        mniTextFormat = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(tbpContent, java.awt.BorderLayout.CENTER);
@@ -69,6 +100,32 @@ public class FrmEditor extends javax.swing.JFrame
         });
         jToolBar1.add(btnCloseTab);
 
+        tglBold.setText("Bold");
+        tglBold.setFocusable(false);
+        tglBold.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        tglBold.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tglBold.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                tglBoldActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(tglBold);
+
+        tglJustify.setText("Justify");
+        tglJustify.setFocusable(false);
+        tglJustify.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        tglJustify.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tglJustify.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                tglJustifyActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(tglJustify);
+
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
         mnFile.setText("File");
@@ -85,6 +142,7 @@ public class FrmEditor extends javax.swing.JFrame
         });
         mnFile.add(mnNew);
 
+        mnOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mnOpen.setText("Open");
         mnOpen.addActionListener(new java.awt.event.ActionListener()
         {
@@ -95,7 +153,7 @@ public class FrmEditor extends javax.swing.JFrame
         });
         mnFile.add(mnOpen);
 
-        mnSaveAs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mnSaveAs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mnSaveAs.setText("Save as");
         mnSaveAs.addActionListener(new java.awt.event.ActionListener()
         {
@@ -107,6 +165,7 @@ public class FrmEditor extends javax.swing.JFrame
         mnFile.add(mnSaveAs);
         mnFile.add(jSeparator1);
 
+        mnExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mnExit.setText("Exit");
         mnExit.addActionListener(new java.awt.event.ActionListener()
         {
@@ -120,6 +179,17 @@ public class FrmEditor extends javax.swing.JFrame
         jMenuBar1.add(mnFile);
 
         jMenu2.setText("Edit");
+
+        mniTextFormat.setText("Text Format");
+        mniTextFormat.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                mniTextFormatActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniTextFormat);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -152,17 +222,25 @@ public class FrmEditor extends javax.swing.JFrame
     private void mnSaveAsActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnSaveAsActionPerformed
     {//GEN-HEADEREND:event_mnSaveAsActionPerformed
         // TODO add your handling code here:
-        String nombreArchivo = JOptionPane.showInputDialog("Ingrese nombre del archivo: ");
+        PnlTextEditor pnlEditor = (PnlTextEditor) tbpContent.getSelectedComponent();
+        int index = tbpContent.getSelectedIndex();
+        
+        if(pnlEditor == null)
+            return;
+        
         try
         {
-            fw = new FileWriter("\\src\\main\\archivos" + nombreArchivo + ".txt");
-            PnlTextEditor pnlTextEditor = (PnlTextEditor) tbpContent.getSelectedComponent();
+            int option = getFileChooser().showSaveDialog(this);
+        
+            if(option == JFileChooser.CANCEL_OPTION)
+                return;
+
+            File file = getFileChooser().getSelectedFile();
+            ioString = new IOString(file);
             
-            String texto = pnlTextEditor.getTxtAEditor().getText();
-            fw.write(texto);
+            ioString.writeString(pnlEditor.getTxtpEditor().getText(), false);
             
-            fw.close();
-            
+            tbpContent.setTitleAt(index, file.getName());
         } catch (IOException ex)
         {
             Logger.getLogger(FrmEditor.class.getName()).log(Level.SEVERE, null, ex);
@@ -178,8 +256,118 @@ public class FrmEditor extends javax.swing.JFrame
     private void mnOpenActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnOpenActionPerformed
     {//GEN-HEADEREND:event_mnOpenActionPerformed
         // TODO add your handling code here:
+        int option = getFileChooser().showOpenDialog(this);
+        if(option == JFileChooser.CANCEL_OPTION)
+            return;
+        File file = getFileChooser().getSelectedFile();
+        ioString = new IOString(file);
+        
+        PnlTextEditor pnlEditor = new PnlTextEditor();
+        try
+        {
+            pnlEditor.getTxtpEditor().setText(ioString.readString());
+        } catch (IOException ex)
+        {
+            Logger.getLogger(FrmEditor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        tbpContent.addTab(file.getName(), pnlEditor);
     }//GEN-LAST:event_mnOpenActionPerformed
 
+    private void mniTextFormatActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mniTextFormatActionPerformed
+    {//GEN-HEADEREND:event_mniTextFormatActionPerformed
+        PnlTextEditor pnlEditor = (PnlTextEditor) tbpContent.getSelectedComponent();
+        if(pnlEditor == null)
+            return;
+        int option = getFontChooser().showDialog(this);
+        if(option == JFontChooser.CANCEL_OPTION)
+            return;
+        String text = pnlEditor.getTxtpEditor().getSelectedText();
+        if(text == null)
+            return;
+        Font font = getFontChooser().getSelectedFont();
+        int start = pnlEditor.getTxtpEditor().getSelectionStart();
+        StyledDocument style = pnlEditor.getTxtpEditor().getStyledDocument();
+        pnlEditor.getTxtpEditor().setStyledDocument(getStyledDocumt(font, style, start, text.length()));
+    }//GEN-LAST:event_mniTextFormatActionPerformed
+
+    private void tglBoldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tglBoldActionPerformed
+    {//GEN-HEADEREND:event_tglBoldActionPerformed
+        // TODO add your handling code here:
+        PnlTextEditor pnlEditor = (PnlTextEditor) tbpContent.getSelectedComponent();
+        if (pnlEditor == null) {
+            return;
+        }
+
+        String text = pnlEditor.getTxtpEditor().getSelectedText();
+        if (text == null) {
+            return;
+        }
+
+        int start = pnlEditor.getTxtpEditor().getSelectionStart();
+        StyledDocument style = pnlEditor.getTxtpEditor().getStyledDocument();
+
+        Font font = new Font(Font.SERIF, tglBold.isSelected() ? Font.BOLD : Font.PLAIN, 12);        
+        pnlEditor.getTxtpEditor().setStyledDocument(getStyledDocumt(font,style, start, text.length()));
+    }//GEN-LAST:event_tglBoldActionPerformed
+
+    private void tglJustifyActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_tglJustifyActionPerformed
+    {//GEN-HEADEREND:event_tglJustifyActionPerformed
+        // TODO add your handling code here:
+        PnlTextEditor pnlEditor = (PnlTextEditor) tbpContent.getSelectedComponent();
+        if (pnlEditor == null) {
+            return;
+        }
+
+        String text = pnlEditor.getTxtpEditor().getSelectedText();
+        if (text == null) {
+            return;
+        }
+
+        int start = pnlEditor.getTxtpEditor().getSelectionStart();
+        StyledDocument style = pnlEditor.getTxtpEditor().getStyledDocument();
+
+            MutableAttributeSet as = getMutableAttributeSet(style,start);
+
+            //SimpleAttributeSet sas = new SimpleAttributeSet();
+
+            //StyleConstants.setAlignment(as, StyleConstants.ALIGN_JUSTIFIED);
+            as.addAttribute(StyleConstants.Alignment, StyleConstants.ALIGN_JUSTIFIED);
+            pnlEditor.getTxtpEditor().getStyledDocument().setCharacterAttributes(start, text.length(), as, true);
+
+            pnlEditor.getTxtpEditor().setStyledDocument(style);
+            
+    }//GEN-LAST:event_tglJustifyActionPerformed
+
+    private StyledDocument getStyledDocumt(Font font, StyledDocument style, int start, int length)
+    {
+        MutableAttributeSet attributeSet = getMutableAttributeSet(style, start);
+        attributeSet.addAttribute(StyleConstants.Bold, font.isBold());
+        attributeSet.addAttribute(StyleConstants.Italic, font.isItalic());
+        attributeSet.addAttribute(StyleConstants.Size, font.getSize());
+        attributeSet.addAttribute(StyleConstants.Family, font.getFamily());
+        attributeSet.addAttribute(StyleConstants.Alignment, StyleConstants.ALIGN_JUSTIFIED);
+        
+        style.setCharacterAttributes(start, length, attributeSet, true);
+        
+        return style;
+    }
+    
+    private MutableAttributeSet getMutableAttributeSet(StyledDocument style, int stat)
+    {
+        Element element = style.getCharacterElement(stat);
+        AttributeSet as = element.getAttributes();
+        
+        return new SimpleAttributeSet(as.copyAttributes());
+    }
+    public JFontChooser getFontChooser()
+    {
+        if(fontChooser == null)
+            fontChooser = new JFontChooser();
+        return fontChooser;
+    }
+
+    
     /**
      * @param args the command line arguments
      */
@@ -236,6 +424,9 @@ public class FrmEditor extends javax.swing.JFrame
     private javax.swing.JMenuItem mnNew;
     private javax.swing.JMenuItem mnOpen;
     private javax.swing.JMenuItem mnSaveAs;
+    private javax.swing.JMenuItem mniTextFormat;
     private javax.swing.JTabbedPane tbpContent;
+    private javax.swing.JToggleButton tglBold;
+    private javax.swing.JToggleButton tglJustify;
     // End of variables declaration//GEN-END:variables
 }
