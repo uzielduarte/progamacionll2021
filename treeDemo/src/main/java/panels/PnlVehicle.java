@@ -9,6 +9,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -122,8 +123,11 @@ public class PnlVehicle extends javax.swing.JPanel
     {
         return btngTrans;
     }
-    
-    
+
+    public JPanel getPnlFields()
+    {
+        return pnlFields;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -140,7 +144,7 @@ public class PnlVehicle extends javax.swing.JPanel
         jPanel1 = new javax.swing.JPanel();
         btnSave = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        pnlFields = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -185,13 +189,13 @@ public class PnlVehicle extends javax.swing.JPanel
 
         add(jPanel1, java.awt.BorderLayout.PAGE_END);
 
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        pnlFields.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setText("StockNumber:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel1, gridBagConstraints);
+        pnlFields.add(jLabel1, gridBagConstraints);
 
         jLabel2.setText("Year:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -199,7 +203,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel2, gridBagConstraints);
+        pnlFields.add(jLabel2, gridBagConstraints);
 
         jLabel3.setText("Make:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -207,7 +211,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel3, gridBagConstraints);
+        pnlFields.add(jLabel3, gridBagConstraints);
 
         jLabel4.setText("Model:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -215,7 +219,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel4, gridBagConstraints);
+        pnlFields.add(jLabel4, gridBagConstraints);
 
         jLabel5.setText("Style:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -223,7 +227,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel5, gridBagConstraints);
+        pnlFields.add(jLabel5, gridBagConstraints);
 
         jLabel6.setText("VIN:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -231,7 +235,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel6, gridBagConstraints);
+        pnlFields.add(jLabel6, gridBagConstraints);
 
         jLabel7.setText("Exterior color:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -239,7 +243,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel7, gridBagConstraints);
+        pnlFields.add(jLabel7, gridBagConstraints);
 
         jLabel8.setText("Interior color:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -247,7 +251,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel8, gridBagConstraints);
+        pnlFields.add(jLabel8, gridBagConstraints);
 
         jLabel9.setText("Miles:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -255,7 +259,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel9, gridBagConstraints);
+        pnlFields.add(jLabel9, gridBagConstraints);
 
         jLabel10.setText("Price:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -263,7 +267,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel10, gridBagConstraints);
+        pnlFields.add(jLabel10, gridBagConstraints);
 
         jLabel11.setText("Transmission:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -271,7 +275,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel11, gridBagConstraints);
+        pnlFields.add(jLabel11, gridBagConstraints);
 
         jLabel12.setText("Engine:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -279,7 +283,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 12;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel12, gridBagConstraints);
+        pnlFields.add(jLabel12, gridBagConstraints);
 
         jLabel13.setText("Image path:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -287,7 +291,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 13;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel13, gridBagConstraints);
+        pnlFields.add(jLabel13, gridBagConstraints);
 
         jLabel14.setText("Status:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -295,34 +299,34 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 14;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(jLabel14, gridBagConstraints);
+        pnlFields.add(jLabel14, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(txtStock, gridBagConstraints);
+        pnlFields.add(txtStock, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(txtStyle, gridBagConstraints);
+        pnlFields.add(txtStyle, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 12;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(txtEngine, gridBagConstraints);
+        pnlFields.add(txtEngine, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 13;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(txtImage, gridBagConstraints);
+        pnlFields.add(txtImage, gridBagConstraints);
 
         spnYear.setModel(new javax.swing.SpinnerNumberModel(1950, 1900, 2021, 1));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -331,7 +335,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(spnYear, gridBagConstraints);
+        pnlFields.add(spnYear, gridBagConstraints);
 
         spnMiles.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -340,7 +344,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(spnMiles, gridBagConstraints);
+        pnlFields.add(spnMiles, gridBagConstraints);
 
         spnPrice.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -349,7 +353,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(spnPrice, gridBagConstraints);
+        pnlFields.add(spnPrice, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -357,7 +361,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(cmbMake, gridBagConstraints);
+        pnlFields.add(cmbMake, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -365,7 +369,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(cmbModel, gridBagConstraints);
+        pnlFields.add(cmbModel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -373,7 +377,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(cmbEColor, gridBagConstraints);
+        pnlFields.add(cmbEColor, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -381,7 +385,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(cmbIColor, gridBagConstraints);
+        pnlFields.add(cmbIColor, gridBagConstraints);
 
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -390,7 +394,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(cmbStatus, gridBagConstraints);
+        pnlFields.add(cmbStatus, gridBagConstraints);
 
         btngTrans.add(rbtnAut);
         rbtnAut.setSelected(true);
@@ -407,7 +411,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(rbtnAut, gridBagConstraints);
+        pnlFields.add(rbtnAut, gridBagConstraints);
 
         btngTrans.add(rbtnMan);
         rbtnMan.setText("MANUAL");
@@ -416,7 +420,7 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(rbtnMan, gridBagConstraints);
+        pnlFields.add(rbtnMan, gridBagConstraints);
 
         btnBrowse.setText("Browse");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -424,16 +428,16 @@ public class PnlVehicle extends javax.swing.JPanel
         gridBagConstraints.gridy = 13;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(btnBrowse, gridBagConstraints);
+        pnlFields.add(btnBrowse, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel2.add(fmtVin, gridBagConstraints);
+        pnlFields.add(fmtVin, gridBagConstraints);
 
-        add(jPanel2, java.awt.BorderLayout.CENTER);
+        add(pnlFields, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbtnAutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rbtnAutActionPerformed
@@ -468,7 +472,7 @@ public class PnlVehicle extends javax.swing.JPanel
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel pnlFields;
     private javax.swing.JRadioButton rbtnAut;
     private javax.swing.JRadioButton rbtnMan;
     private javax.swing.JSpinner spnMiles;

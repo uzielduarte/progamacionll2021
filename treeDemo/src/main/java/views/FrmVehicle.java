@@ -11,6 +11,7 @@ import controllers.PnlViewVehicleController;
 import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import javax.swing.JComponent;
+import panels.PnlFields;
 import panels.PnlVehicle;
 import panels.PnlVehicleTree;
 import panels.PnlViewVehicles;

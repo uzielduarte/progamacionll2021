@@ -6,6 +6,7 @@
 package panels;
 
 import controllers.PnlVehicleTreeController;
+import javax.swing.JPanel;
 import javax.swing.JTree;
 
 /**
@@ -28,6 +29,11 @@ public class PnlVehicleTree extends javax.swing.JPanel
     {
         return treeAccount;
     }
+
+    public JPanel getPnlData()
+    {
+        return pnlData;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,26 +45,34 @@ public class PnlVehicleTree extends javax.swing.JPanel
     private void initComponents()
     {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         treeAccount = new javax.swing.JTree();
+        pnlData = new javax.swing.JPanel();
 
-        setLayout(new javax.swing.OverlayLayout(this));
+        setBackground(new java.awt.Color(51, 51, 255));
+        setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setLayout(new javax.swing.OverlayLayout(jPanel1));
-        add(jPanel1);
+        jPanel2.setLayout(new java.awt.BorderLayout());
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         treeAccount.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane1.setViewportView(treeAccount);
+        jScrollPane2.setViewportView(treeAccount);
 
-        add(jScrollPane1);
+        jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        add(jPanel2, java.awt.BorderLayout.LINE_START);
+
+        pnlData.setBackground(new java.awt.Color(204, 204, 204));
+        pnlData.setLayout(new java.awt.BorderLayout());
+        add(pnlData, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel pnlData;
     private javax.swing.JTree treeAccount;
     // End of variables declaration//GEN-END:variables
 }
